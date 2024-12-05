@@ -23,6 +23,10 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '17'
+          java-package: jdk
+          architecture: x64
+          check-latest: false
+          distribution: 'amazon-corretto'
 
       - name: Cache Maven dependencies
         uses: actions/cache@v2
