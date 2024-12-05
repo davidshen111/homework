@@ -22,7 +22,6 @@ jobs:
         with:
           distribution: 'corretto'
           java-version: '17'
-      - run: java HomeworkApplication.java
 
       - name: Cache maven dependencies
         uses: actions/checkout@v4
