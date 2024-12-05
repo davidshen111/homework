@@ -26,7 +26,7 @@ jobs:
           java-package: jdk
           architecture: x64
           check-latest: false
-          distribution: 'amazon-corretto'
+          distribution: 'openjdk'
 
       - name: Cache Maven dependencies
         uses: actions/cache@v2
