@@ -34,13 +34,10 @@ jobs:
       - name: Build and run unit tests
         run: mvn clean install
 
-      - name: Run SonarQube analysis
-        uses: SonarSource/sonarcloud-github-action@v1
-        with:
-          sonar-token: ${{ secrets.SONAR_TOKEN }}
+      - name: SonarQube Scan
+        uses: sonarsource/sonarcloud-github-action@v4.0.0
         env:
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-          SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   # 2. 部署到 AWS (dev 环境)
   deploy-dev:
