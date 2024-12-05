@@ -39,6 +39,13 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-artifacts
+          path: target/
+
+
   # 2. Deploy AWS (dev env.)
   deploy-dev:
     runs-on: ubuntu-latest
@@ -48,6 +55,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: build-artifacts
 
       - name: Set up AWS CLI
         uses: aws-actions/configure-aws-credentials@v1
@@ -62,8 +74,6 @@ jobs:
 
       - name: Deploy backend to ECS
         run: |
-          ls -l
-          ls -l target
           docker build -t my-backend -f dockerfile/Dockerfile .
           docker tag my-backend:latest ${{ secrets.AWS_ECR_URL_DEV }}:latest
           aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin ${{ secrets.AWS_ECR_URL_DEV }}
