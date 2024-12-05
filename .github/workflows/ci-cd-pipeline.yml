@@ -30,21 +30,17 @@ jobs:
           distribution: 'corretto'
           java-version: '17'
           cache: 'maven'
-
       - name: Build and run unit tests
         run: mvn clean install
-
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifacts
+          path: target/
       - name: SonarQube Scan
         uses: sonarsource/sonarcloud-github-action@v4.0.0
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: build-artifacts
-          path: target/
-
 
   # 2. Deploy AWS (dev env.)
   deploy-dev:
@@ -57,9 +53,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Download build artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: build-artifacts
+          path: target/
 
       - name: Set up AWS CLI
         uses: aws-actions/configure-aws-credentials@v1
