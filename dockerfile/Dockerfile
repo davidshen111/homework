@@ -2,9 +2,17 @@ FROM eclipse-temurin:17-jdk-alpine
 
 WORKDIR /app
 
+ARG DB_USERNAME
+ARG DB_PASSWORD
+ARG DB_HOST
+
+ENV DB_USERNAME=$DB_USERNAME
+ENV DB_PASSWORD=$DB_PASSWORD
+ENV DB_HOST=$DB_HOST
+
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} app.jar
 
-ENTRYPOINT ["java", "-jar", "/app.jar"]
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]
 
 EXPOSE 8080

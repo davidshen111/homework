@@ -71,7 +71,11 @@ jobs:
 
       - name: Deploy backend to ECS
         run: |
-          docker build -t my-backend -f dockerfile/Dockerfile .
+          docker build \
+            --build-arg DB_USERNAME=${{ secrets.AWS_RDS_USER }} \
+            --build-arg DB_PASSWORD=${{ secrets.AWS_RDS_PSW }} \
+            --build-arg DB_HOST=${{ secrets.AWS_RDS_ENDPOINT }} \
+            -t my-backend -f dockerfile/Dockerfile .
           docker tag my-backend:latest ${{ secrets.AWS_ECR_URL_DEV }}:latest
           aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin ${{ secrets.AWS_ECR_URL_DEV }}
           docker push ${{ secrets.AWS_ECR_URL_DEV }}:latest
