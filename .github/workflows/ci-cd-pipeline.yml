@@ -79,7 +79,7 @@ jobs:
           docker tag my-backend:latest ${{ secrets.AWS_ECR_URL_DEV }}:latest
           aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin ${{ secrets.AWS_ECR_URL_DEV }}
           docker push ${{ secrets.AWS_ECR_URL_DEV }}:latest
-          aws ecs update-service --cluster ${{ secrets.AWS_ECS_CLUSTER_DEV }} --service ${{ secrets.AWS_ECS_SERVICE_DEV }} --force-new-deployment --enable-execute-command
+          aws ecs update-service --cluster ${{ secrets.AWS_ECS_CLUSTER_DEV }} --service ${{ secrets.AWS_ECS_SERVICE_DEV }} --force-new-deployment
 
   # 3. Deploy AWS (prod env.)
   deploy-prod:
