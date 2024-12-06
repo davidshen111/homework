@@ -81,7 +81,7 @@ jobs:
           docker push ${{ secrets.AWS_ECR_URL_DEV }}:latest
           aws ecs update-service --cluster ${{ secrets.AWS_ECS_CLUSTER_DEV }} --service ${{ secrets.AWS_ECS_SERVICE_DEV }} --force-new-deployment
 
-  # 3. 部署到 AWS (prod 环境)
+  # 3. Deploy AWS (prod env.)
   deploy-prod:
     runs-on: ubuntu-latest
     needs: build-backend
