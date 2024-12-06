@@ -69,7 +69,7 @@
         const tbody = dataTable.getElementsByTagName('tbody')[0];
 
         fetchButton.addEventListener('click', function() {
-            fetch('http://${API_BASE_URL}:8080/getData')
+            fetch(`http://${API_BASE_URL}:8080/getData`)
                 .then(response => response.json())
                 .then(data => {
                     dataTable.style.display = 'table';
