@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - master        # master branch for prod env.
-      - develop     # 触发 develop 分支，部署到 dev 环境
+      - develop     # develop branch for dev env.
   pull_request:
     branches:
       - master
