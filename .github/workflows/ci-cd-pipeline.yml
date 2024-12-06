@@ -69,7 +69,7 @@ jobs:
         env:
           AWS_ECR_URL_DEV: ${{ secrets.AWS_ECR_URL_DEV }}
         run: |
-          find ui/ -name '*.html' -exec sed -i "s/const API_BASE_URL = \"localhost\"/const API_BASE_URL = \"${secrets.AWS_ECR_URL_DEV}\"/g" {} +
+          find ui/ -name '*.html' -exec sed -i "s/const API_BASE_URL = \"localhost\"/const API_BASE_URL = \"${AWS_ECR_URL_DEV}\"/g" {} +
           aws s3 sync ui/ s3://${{ secrets.AWS_S3_BUCKET_DEV }}/ --delete
 
       - name: Deploy backend to ECS
