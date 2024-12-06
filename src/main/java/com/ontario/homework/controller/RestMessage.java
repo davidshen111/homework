@@ -19,7 +19,6 @@ public class RestMessage {
 
     @GetMapping("/getData")
     public String getData() throws Exception {
-        //log.info("test");
         List<DataEntity> resultData = dataService.getPresentData();
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.writeValueAsString(resultData);

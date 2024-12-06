@@ -17,8 +17,7 @@ public class DataService {
     private DataMapper dataMapper;
 
     public List<DataEntity> getPresentData() {
-        List<DataEntity> result =  dataMapper.getPresentData();
-        return result;
+        return  dataMapper.getPresentData();
     }
 
 }
