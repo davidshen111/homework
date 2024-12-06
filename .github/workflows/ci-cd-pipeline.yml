@@ -11,7 +11,7 @@ on:
       - develop
 
 jobs:
-  # 1. 后端构建、单元测试、SonarQube 分析和 Docker 镜像构建
+  # 1. be build、ut、SonarQube analysis
   build-backend:
     runs-on: ubuntu-latest
 
