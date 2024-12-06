@@ -85,7 +85,7 @@ jobs:
   deploy-prod:
     runs-on: ubuntu-latest
     needs: build-backend
-    if: github.ref == 'refs/heads/main'  # 仅在主分支部署
+    if: github.ref == 'refs/heads/main'  # only for master branch
 
     steps:
       - name: Checkout code
