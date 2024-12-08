@@ -3,7 +3,7 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-      - master        # master branch for prod env.
+      - master      # master branch for prod env.
       - develop     # develop branch for dev env.
   pull_request:
     branches:
